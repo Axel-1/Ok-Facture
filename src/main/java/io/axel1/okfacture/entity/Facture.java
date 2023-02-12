@@ -48,4 +48,9 @@ public class Facture {
             "JOIN tva t ON p.code_tva = t.code_tva " +
             "WHERE lf.id_fac = id_fac AND t.date_debut < date_facturation AND t.date_fin > date_facturation)")
     private Double totalTtc;
+
+    public void addLigneFacture(LigneFacture ligneFacture) {
+        lignesFacture.add(ligneFacture);
+        ligneFacture.setFacture(this);
+    }
 }

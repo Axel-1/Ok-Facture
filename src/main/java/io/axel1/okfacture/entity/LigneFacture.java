@@ -14,7 +14,7 @@ import org.hibernate.annotations.Formula;
 @Table(name = "Ligne_Facture")
 public class LigneFacture {
     @EmbeddedId
-    private LigneFactureId id;
+    private LigneFactureId id = new LigneFactureId();
 
     @JsonBackReference
     @MapsId("idFac")
@@ -33,11 +33,13 @@ public class LigneFacture {
     @Column(name = "prix_facture_ht")
     private Double prixFactureHt;
 
-    /*@Formula("(SELECT ROUND(prix_facture_ht * t.valeur, 2) " +
+    @Formula("(SELECT t.valeur " +
             "FROM tva t " +
             "JOIN facture f ON id_fac = f.id_fac " +
             "JOIN produit p ON id_prod = p.id_prod " +
             "WHERE t.date_debut < f.date_facturation AND t.date_fin > f.date_facturation AND t.code_tva = p.code_tva)")
-    private Double prixFactureTtc;*/
+    private Double valeurTva;
 
+    @Formula("ROUND(prix_facture_ht * qte, 2)")
+    private Double totalPrixFactureHt;
 }

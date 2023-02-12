@@ -1,0 +1,9 @@
+package io.axel1.okfacture.dto;
+
+import java.io.Serializable;
+
+/**
+ * A DTO for the {@link io.axel1.okfacture.entity.LigneFacture} entity
+ */
+public record PostLigneFactureDto(Integer qte) implements Serializable {
+}
